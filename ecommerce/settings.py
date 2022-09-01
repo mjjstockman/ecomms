@@ -97,10 +97,16 @@ if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-else:
     DATABASES = {
-        'default': dj_database_url.parse('postgres://vaiqblqiwklavg:8c84f6889037265b9234cf1703d6135957d3d11991d0999a31ffcc9d680995e4@ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/d3lddlvdu9q6u8')
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
+# else:
+#     DATABASES = {
+#         'default': dj_database_url.parse('postgres://vaiqblqiwklavg:8c84f6889037265b9234cf1703d6135957d3d11991d0999a31ffcc9d680995e4@ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/d3lddlvdu9q6u8')
+#     }
 
 
 # Password validation
